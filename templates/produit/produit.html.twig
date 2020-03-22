@@ -1,0 +1,45 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	{{produit.nom}}
+{% endblock %}
+
+{% block stylesheets %}
+	<style>
+
+		ul {
+			display: flex;
+		}
+		ul li {
+			list-style: none;
+			margin: 2vh 2vw;
+		}
+		.card {
+			width: 400px;
+		}
+		.card img {
+			width: 100%;
+		}
+	</style>
+{% endblock %}
+
+{% block body %}
+	<h1>{{produit.nom}}</h1>
+	{% if produit.photo is not null %}
+		<div class="card">
+			<img src="{{ asset('uploads/'~produit.photo) }}">
+		</div>
+	{% endif %}
+
+	<p>{{'produit.qte'| trans}} :
+		{{produit.qte}}
+	</p>
+	<h4>{{'produit.prix' | trans}} :
+		{{produit.prix}}€</h4>
+
+    <br>
+    <h1>{{'form_panier.action' | trans}}</h1>
+    {{form(form_setQuantity)}}
+
+    <a href="{{ path('delete_produit', {'id': produit.id }) }}" class="btn btn-danger">{{'produit.supp' | trans}}</a>
+{% endblock %}

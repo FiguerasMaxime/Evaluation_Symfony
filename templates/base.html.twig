@@ -1,12 +1,43 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Welcome!
+			{% endblock %}
+		</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+		{% block stylesheets %}
+			<style>
+				ul {
+					display: flex;
+				}
+				ul li {
+					list-style: none;
+					margin: 2vh 2vw;
+				}
+			</style>
+		{% endblock %}
+	</head>
+	<body>
+
+		<div class="menu">
+			<ul>
+				<li><a href="{{path('produit') }}">{{'menu.produits' | trans}}</a></li>
+				<li><a href="{{path('panier') }}">{{'menu.panier' | trans}}</a></li>
+			</ul>
+		</div>
+
+		<div class="container">
+			{% for type,messages in app.flashes %}
+				{% for message in messages %}
+					<p class="alert alert-{{type}}">{{message}}
+					</p>
+				{% endfor %}
+			{% endfor %}
+
+			{% block body %}{% endblock %}
+		</div>
+		{% block javascripts %}{% endblock %}
+	</body>
 </html>

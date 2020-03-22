@@ -1,0 +1,39 @@
+#FR
+
+menu:
+  produits: 'Produits'
+  panier: 'Panier'
+
+#affichage produit
+produit:
+  titre: 'Liste des produits'
+  photo: 'Photo'
+  nom: 'Nom'
+  qte: 'Quantité'
+  prix: 'Prix'
+  alert: 'Il y a aucun produit'
+  supp: 'Supprimer'
+  name: 'produit'
+  names: 'produits'
+
+
+#form produit
+form_produit:
+  action: 'Ajouter un produit'
+
+#form_panier
+form_panier:
+  action: 'Ajouter au panier'
+
+
+file:
+  error: "Le fichier n'est pas valide"
+
+panier:
+  titre: 'Mon panier'
+  nom: 'Nom'
+  qte: 'Quantité'
+  montant: 'Montant'
+  alert: 'Il y a aucun produit dans le panier'
+  total: 'Montant total du panier'
+

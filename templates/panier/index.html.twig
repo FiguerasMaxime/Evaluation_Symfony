@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PanierController!
+{% endblock %}
+
+{% block body %}
+	<h1>{{'panier.titre' | trans}}</h1>
+	{% if panier is not empty%}
+		<table border="1" class="table table-striped table-inverse">
+			<thead>
+				<tr>
+					<th>{{'panier.nom' | trans}}</th>
+					<th>{{'panier.qte' | trans}}</th>
+					<th>{{'panier.montant' | trans}}</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% set prix_produit = 0 %}
+				{% set total_panier = 0 %}
+
+				{% for produit in panier %}
+                    {% set prix_produit = produit.qte * produit.produits.prix %}
+                    {% set total_panier = total_panier + prix_produit %}
+
+					<tr>
+						<td>{{produit.produits.nom}}</td>
+						<td>{{produit.qte}}</td>
+						<td>
+							{{prix_produit}}
+							€</td>
+						<td>
+							<a href="{{ path('delete_panier', {'id': produit.id }) }}" class="btn btn-danger">{{'produit.supp' | trans}}</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		<p>
+			{% if panier|length > 1 %}
+				<p>{{panier|length}}
+					{{'produit.names' | trans}}</p>
+			{% else %}
+				<p>{{panier|length}}
+					{{'produit.name' | trans}}</p>
+			{% endif %}
+		</p>
+        <h3>{{'panier.total' | trans}} : {{total_panier}} €</h3>
+	{% else %}
+		<p>{{'panier.alert' | trans}}</p>
+	{% endif %}
+
+{% endblock %}
